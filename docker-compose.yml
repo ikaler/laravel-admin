@@ -1,0 +1,59 @@
+version: "3.8"
+
+services:
+  php:
+    image: php74-apache-dev
+    container_name: ${CONTAINER_PREFIX}-php
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8282:80
+      # - 9443:443
+    volumes:
+      - ./src:/var/www
+      - ./logs:/var/www/logs
+      - ./docker/apache/vhosts.conf:/etc/apache2/sites-available/000-default.conf
+      - ./docker/php/php.ini:/usr/local/etc/php/conf.d/local.ini
+    networks:
+      - network
+
+  mysql:
+    image: mysql57-dev
+    container_name: ${CONTAINER_PREFIX}-mysql
+    restart: unless-stopped
+    ports:
+      - 6033:3306
+    volumes:
+      - ./dbdata:/var/lib/mysql:delegated
+      - ./logs:/var/www/logs
+      # - ./mysql/init.sql:/docker-entrypoint-initdb.d
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_USER: ${MYSQL_USERNAME}
+      SERVICE_TAGS: dev
+      SERVICE_NAME: mysql
+    networks:
+      - network
+
+  phpmyadmin:
+    image: phpmyadmin
+    container_name: ${CONTAINER_PREFIX}-phpmyadmin
+    restart: unless-stopped
+    depends_on:
+      - mysql
+    ports:
+      - 8283:80
+    environment:
+      - PMA_HOST=mysql
+      - PMA_USER=${MYSQL_USERNAME}
+      - PMA_PASSWORD=${MYSQL_PASSWORD}
+    volumes:
+      - ./docker/phpmyadmin/config.user.inc.php:/etc/phpmyadmin/config.user.inc.php
+      - /sessions
+    networks:
+      - network
+
+networks:
+  network:
