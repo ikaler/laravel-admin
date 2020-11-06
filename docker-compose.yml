@@ -7,6 +7,7 @@ services:
     restart: unless-stopped
     depends_on:
       - mysql
+      - phpmyadmin
     ports:
       - 8282:80
       # - 9443:443
@@ -55,5 +56,16 @@ services:
     networks:
       - network
 
+  npm:
+    image: node:13.7
+    container_name: ${CONTAINER_PREFIX}-npm
+    depends_on:
+      - php
+    volumes:
+      - ./src:/var/www
+    working_dir: /var/www
+    networks:
+      - network
+      
 networks:
   network:

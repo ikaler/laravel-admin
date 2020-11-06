@@ -46,6 +46,12 @@ docker-compose exec php composer --version
 docker-compose exec php php artisan env
 ```
 
+### Run npm commands inside npm service
+```
+docker-compose run --rm npm npm install
+docker-compose run --rm npm npm run dev
+```
+
 ### To browse website
 Add following entry in `/etc/hosts` file 
 ```
