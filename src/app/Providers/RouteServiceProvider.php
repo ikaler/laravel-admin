@@ -28,6 +28,9 @@ class RouteServiceProvider extends ServiceProvider
      */
     // protected $namespace = 'App\\Http\\Controllers';
 
+    /** @var string $apiNamespace */
+    protected $apiNamespace ='App\Http\Controllers\Api';
+
     /**
      * Define your route model bindings, pattern filters, etc.
      *
@@ -38,10 +41,21 @@ class RouteServiceProvider extends ServiceProvider
         $this->configureRateLimiting();
 
         $this->routes(function () {
+
+            $defaultVersion = config('app.api_latest', 1);
+
+            Route::prefix('api/v1')
+                ->middleware(['api', 'api_version:v1', 'check_api_key'])
+                ->namespace("{$this->apiNamespace}\V1")
+                ->group(base_path('routes/api_v1.php'));
+
+            /**
+             * In case version is missing in the url then set to default
+             */
             Route::prefix('api')
-                ->middleware('api')
-                ->namespace($this->namespace)
-                ->group(base_path('routes/api.php'));
+                ->middleware(["api", "api_version:v{$defaultVersion}", "check_api_key"])
+                ->namespace("{$this->apiNamespace}\V{$defaultVersion}")
+                ->group(base_path("routes/api_v{$defaultVersion}.php"));
 
             Route::middleware('web')
                 ->namespace($this->namespace)

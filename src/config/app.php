@@ -229,4 +229,27 @@ return [
 
     ],
 
+
+    /*
+    |-------------------------------------------
+    | Current API Version
+    |-------------------------------------------
+    | This is the default API version of your API (Latest version).
+    | If there is no version specified when calling the API,
+    | it will use this one.
+    */
+    'api_latest' => '1',
+
+    /*
+    /-------------------------------------------
+    / API Keys 
+    /-------------------------------------------
+    / Mobile app will have Api-Key in the header.
+    / We need to verify if that key is registered here.
+    */
+    'api_keys' => [
+        env('API_KEY_IOS'),
+        env('API_KEY_ANDROID'),
+    ],
+
 ];
