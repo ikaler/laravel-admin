@@ -20,13 +20,13 @@ class CheckApiKey
         
         if (!$request->header('x-api-key')) {
             return response()->json([
-                "error", "Forbidden: Missing Api-Key in the request",
+                "error" => "Forbidden: Missing Api-Key in the request",
             ], 403);
         }
         
         if (!in_array($request->header('x-api-key'), $keys)) {
             return response()->json([
-                "error", "Forbidden: Invalid Api-Key in the request",
+                "error" => "Forbidden: Invalid Api-Key in the request",
             ], 403);
         }
 
