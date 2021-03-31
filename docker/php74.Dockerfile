@@ -47,7 +47,7 @@ RUN pecl install redis-5.3.2 \
     xdebug mcrypt memcached grpc
 
 # Enable common Apache modules
-RUN a2enmod headers expires rewrite
+RUN a2enmod headers expires rewrite ssl
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/local/bin/composer

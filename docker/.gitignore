@@ -1,1 +1,3 @@
 apache/vhosts.conf
+apache/ssl/*.crt
+apache/ssl/*.key
