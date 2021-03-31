@@ -57,8 +57,8 @@ Add following entry in `/etc/hosts` file
 ```
 127.0.0.1       website.local
 ```
-For HTTP access use `http://website.local:9080`\
-For HTTPS access use `https://website.local:9443`\
+For HTTP access use `http://website.local:9080`  
+For HTTPS access use `https://website.local:9443`
 
 ### VSCODE Xdebug Config settings
 ```
