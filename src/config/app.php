@@ -238,7 +238,7 @@ return [
     | If there is no version specified when calling the API,
     | it will use this one.
     */
-    'api_latest' => '1',
+    'api_latest' => env('API_VERSION', '1'),
 
     /*
     /-------------------------------------------
@@ -248,8 +248,8 @@ return [
     / We need to verify if that key is registered here.
     */
     'api_keys' => [
-        env('API_KEY_IOS'),
-        env('API_KEY_ANDROID'),
+        env('API_KEY_IOS', ''),
+        env('API_KEY_ANDROID', ''),
     ],
 
 ];

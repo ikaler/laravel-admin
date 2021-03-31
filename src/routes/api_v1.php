@@ -20,6 +20,10 @@ Route::get("/", [ApiController::class, 'index']);
 Route::post("/login", [AuthController::class, 'login']);
 Route::post("/register", [AuthController::class, 'register']);
 
+// Route::middleware('auth:sanctum')->group(function() {
+//     Route::post('/logout', 'AuthController@logout');
+// });
+
 Route::group(['middleware' => ['auth:sanctum']], function() {
 
     Route::post("/logout", [AuthController::class, 'logout']);
