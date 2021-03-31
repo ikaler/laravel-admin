@@ -1,4 +1,4 @@
-# Setup Laravel/PHP app as a Docker container 
+# Setup secure (using SSL) Laravel/PHP app as a Docker container
 
 ## Setup LAMP environment using Docker
 Custom docker images for PHP/MySQL Applications
@@ -15,7 +15,7 @@ cd docker
 
 Execute these commands to build custom php and mysql images
 ```
-$ docker image build --no-cache -f php74.Dockerfile -t php74-apache-dev .
+$ docker image build --no-cache -f php74.Dockerfile -t php74-apache-ssl-dev .
 $ docker image build --no-cache -f mysql57.Dockerfile -t mysql57-dev .
 ```
 
@@ -57,7 +57,8 @@ Add following entry in `/etc/hosts` file
 ```
 127.0.0.1       website.local
 ```
-Access site using `http://website.local:8282`
+For HTTP access use `http://website.local:9080`
+For HTTPS access use `https://website.local:9443`
 
 ### VSCODE Xdebug Config settings
 ```
