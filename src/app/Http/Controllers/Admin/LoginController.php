@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -29,9 +30,9 @@ class LoginController extends Controller
     /**
      * Show admin login form.
      *
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
         return view('admin.auth.login');
     }
@@ -64,10 +65,20 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        $this->auth()->guard('admin')->logout();
+        $this->guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->session()->flash('success', 'You have successfully logout.');
         return redirect()->route('admin.login');
+    }
+
+    /**
+     * Get the guard to be used during authentication.
+     *
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
+     */
+    protected function guard()
+    {
+        return Auth::guard('admin');
     }
 }
