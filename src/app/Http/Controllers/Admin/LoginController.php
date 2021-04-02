@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
-use Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
-use Session;
 
 class LoginController extends Controller
 {
@@ -53,7 +51,7 @@ class LoginController extends Controller
         $credentials = $request->only('email', 'password');
         $remember = $request->filled('remember');
 
-        if (auth()->guard('admin')->attempt($credentials, $remember))
+        if ($this->guard('admin')->attempt($credentials, $remember))
         {
             $user = auth()->guard('admin')->user();
             return redirect()->route('admin.dashboard');
@@ -66,7 +64,7 @@ class LoginController extends Controller
 
     public function logout(Request $request)
     {
-        auth()->guard('admin')->logout();
+        $this->auth()->guard('admin')->logout();
         $request->session()->invalidate();
         $request->session()->regenerateToken();
         $request->session()->flash('success', 'You have successfully logout.');
