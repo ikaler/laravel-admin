@@ -20,6 +20,15 @@ class RouteServiceProvider extends ServiceProvider
     public const HOME = '/home';
 
     /**
+     * The path to the "admin home" route for your application.
+     *
+     * This is used by Laravel authentication to redirect users after login.
+     *
+     * @var string
+     */
+    public const ADMIN_HOME = '/admin';
+
+    /**
      * The controller namespace for the application.
      *
      * When present, controller route declarations will automatically be prefixed with this namespace.
@@ -30,6 +39,9 @@ class RouteServiceProvider extends ServiceProvider
 
     /** @var string $apiNamespace */
     protected $apiNamespace ='App\Http\Controllers\Api';
+
+    /** @var string $adminNamespace */
+    protected $adminNamespace ='App\Http\Controllers\Admin';
 
     /**
      * Define your route model bindings, pattern filters, etc.
@@ -45,7 +57,7 @@ class RouteServiceProvider extends ServiceProvider
             $defaultVersion = config('app.api_latest', 1);
 
             Route::prefix('api/v1')
-                ->middleware(['api', 'api_version:v1', 'check_api_key'])
+                ->middleware(['api', 'api.version:v1', 'check.api.key'])
                 ->namespace("{$this->apiNamespace}\V1")
                 ->group(base_path('routes/api_v1.php'));
 
@@ -53,13 +65,18 @@ class RouteServiceProvider extends ServiceProvider
              * In case version is missing in the url then set to default
              */
             Route::prefix('api')
-                ->middleware(["api", "api_version:v{$defaultVersion}", "check_api_key"])
+                ->middleware(['api', "api.version:v{$defaultVersion}", 'check.api.key'])
                 ->namespace("{$this->apiNamespace}\V{$defaultVersion}")
                 ->group(base_path("routes/api_v{$defaultVersion}.php"));
 
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+            
+            Route::prefix('admin')
+                ->middleware(['admin'])
+                ->namespace($this->adminNamespace)
+                ->group(base_path('routes/admin.php'));
         });
     }
 
