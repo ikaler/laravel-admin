@@ -33,7 +33,7 @@ $ docker image build --no-cache -f mysql57.Dockerfile -t mysql57-dev .
 ```
 
 ### Config all settings for `docker-compose.yml`
-Copy `.env.example` file in the root folder to `.env`
+Copy `.env.example` file in the root folder to `.env`  
 Change settings in `.env` for as required
 
 ### Start/Stop all services in containers:
@@ -75,10 +75,10 @@ Add following entry in `/etc/hosts` file
 127.0.0.1       website.local
 ```
 For HTTP access use `http://website.local:8080`  
-For HTTPS access use `https://website.local:8443`
-For HTTP access use `https://website.local:8080/admin`
-For HTTPS access use `https://website.local:8443/admin`
-For PhpMyAdmin access use `https://website.local:8081`
+For HTTPS access use `https://website.local:8443`  
+For HTTP access use `https://website.local:8080/admin`  
+For HTTPS access use `https://website.local:8443/admin`  
+For PhpMyAdmin access use `https://website.local:8081`  
 
 
 ### VSCODE Xdebug Config settings
