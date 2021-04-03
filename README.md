@@ -41,15 +41,19 @@ $ docker image build --no-cache -f mysql8.Dockerfile -t mysql8-dev .
 ```
 
 ### Config all settings for `docker-compose.yml`
-Copy `.env.example` file in the root folder to `.env`  
-Change settings in `.env` for as required
-
-### Start/Stop all services in containers:
 
 Move out of `docker` directory
 ```
 cd ..
 ```
+
+Copy `.env.example` file in the root folder to `.env`
+
+Change settings in `.env` for as required
+
+Make changes to php and mysql images in `docker-compose.yml` for required version.  
+
+### Start/Stop all services in containers:
 
 Execute the following command to Start
 ```
