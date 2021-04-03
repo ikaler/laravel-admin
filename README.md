@@ -15,8 +15,8 @@ Certificate files should be inside `docker/apache/ssl` folder.
 ## Setup LAMP environment using Docker
 Custom docker images for PHP/MySQL Applications  
 - apache  
-- php (7.4)  
-- mysql (5.7)  
+- php (8.0.3) / (7.4)  
+- mysql (8.0.23) / (5.7)  
 
 
 ### Build custom images
@@ -26,10 +26,18 @@ Go inside `docker` folder
 cd docker
 ```
 
-Execute these commands to build custom php and mysql images
+Execute these commands to build images  
+
+For PHP 7.4 and MySQL 5.7 
 ```
 $ docker image build --no-cache -f php74.Dockerfile -t php74-apache-ssl-dev .
 $ docker image build --no-cache -f mysql57.Dockerfile -t mysql57-dev .
+```
+
+For PHP 8.0 and MySQL 8.0
+```
+$ docker image build --no-cache -f php803.Dockerfile -t php803-apache-ssl-dev .
+$ docker image build --no-cache -f mysql8.Dockerfile -t mysql8-dev .
 ```
 
 ### Config all settings for `docker-compose.yml`

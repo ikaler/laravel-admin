@@ -1,9 +1,9 @@
 # PHP + Apache
-FROM php:7.4-apache
+FROM php:8.0.3-apache
 LABEL maintainer="inderjeet@gmail.com"
 
 # Define user for the container
-ENV user=laravel
+ENV user=docker
 ENV uid=1000
 
 # Install system dependencies
@@ -38,13 +38,18 @@ RUN docker-php-ext-install \
     sockets
 
 # Install PHP extensions using PECL 
-RUN pecl install redis-5.3.2 \
-    && pecl install xdebug-2.9.8 \
-    && pecl install mcrypt-1.0.3 \
-    && pecl install memcached-3.1.5 \
-    && pecl install grpc-1.32.0 \
-    && docker-php-ext-enable redis \
-    xdebug mcrypt memcached grpc
+RUN pecl install redis-5.3.4 \
+    && pecl install xdebug-3.0.3 \
+    && pecl install mcrypt-1.0.4 \
+    && pecl install memcached-3.1.5
+
+# Enable PECL extensions
+RUN docker-php-ext-enable redis \
+    xdebug mcrypt memcached
+
+# Install grpc extension if required (eg: for Firebase access using PHP)
+# RUN pecl install grpc-1.36.0 \
+#    && docker-php-ext-enable grpc
 
 # Enable common Apache modules
 RUN a2enmod headers expires rewrite ssl
