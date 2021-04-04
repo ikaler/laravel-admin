@@ -8,6 +8,8 @@ services:
     depends_on:
       - mysql
       - phpmyadmin
+    expose:
+      - 9003
     ports:
       - '${HOST_HTTP_PORT:-80}:80'
       - '${HOST_HTTPS_PORT:-443}:443'
