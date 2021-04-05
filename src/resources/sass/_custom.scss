@@ -1,3 +1,136 @@
-.my-custom-class {
-    font-size: medium;
+:root {
+    --left-nav-width: 60px;
+    --left-nav-extend-width: 160px;
+    --navbar-height: 100px;
+
+    --body-font: $font-family-sans-serif;
+    --normal-font-size: $font-size-base;
+    --z-fixed: 1200;
+}
+
+body {
+    position: relative;
+    margin: 0;
+    padding: 0 0 0 var(--left-nav-width);
+    background-color: $body-bg;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    transition: .5s;
+}
+
+.left-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: var(--left-nav-width);
+    height: 100vh;
+    background-color: $purple;
+    color: $bluish-grey-light;
+    padding: .5rem 0 2rem;
+    transition: .5s;
+    z-index: var(--z-fixed);
+}
+
+.left-nav {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.left-nav-brand {
+    display: grid;
+    grid-template-columns: max-content;
+    justify-content: start;
+    margin-bottom: 2rem;
+
+}
+
+.left-nav-toggle {
+    font-size: 1rem;
+    padding: 1rem 1.5rem;
+    cursor: pointer;
+}
+
+.left-nav-profile {
+    display: grid;
+    margin: 0 .5rem;
+    grid-template-rows: max-content max-content;
+    align-items: center;
+}
+
+.left-nav-profile-img {
+    border-radius: 50%;
+    border: 4px solid $purple-light;
+    margin-bottom: .5rem;
+    justify-self: center;
+}
+
+.left-nav-admin-name {
+    color: $bluish-grey;
+    font-size: var(--normal-font-size);
+    justify-self: center;
+}
+
+.left-nav-link {
+    display: grid;
+    grid-template-columns: max-content max-content;
+    align-items: center;
+    column-gap: 1.5rem;
+    padding: .75rem 1rem;
+    color: $bluish-grey-light;
+    margin-bottom: 1rem;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.left-nav-link:hover {
+    background-color: $purple-light;
+    color: $bluish-grey-light;
+    text-decoration: none;
+}
+
+.left-nav-link.active {
+    background-color: $purple-light;
+    color: $bluish-grey-light;
+    text-decoration: none;
+}
+
+.left-nav-icon {
+    font-size: 1.5rem;
+}
+
+.left-nav-name {
+    font-size: var(--normal-font-size);
+}
+
+/** toggle changes start **/
+.left-navbar-expander {
+    width: calc(var(--left-nav-width) + var(--left-nav-extend-width));
+}
+
+.top-navbar-shrinker-base {
+    left: var(--left-nav-width);
+    transition: .5s;
+}
+
+.top-navbar-shrinker {
+    left: calc(var(--left-nav-width) + var(--left-nav-extend-width));
+    transition: .5s;
+}
+
+.body-padding {
+    padding-left: calc(var(--left-nav-width) + var(--left-nav-extend-width));
+}
+
+.left-nav-profile-img-max {
+    width: 120px;
+}
+/** toggle changes end **/
+
+
+.right-section {
+    position: relative;
+    padding: 54px 16px;
 }

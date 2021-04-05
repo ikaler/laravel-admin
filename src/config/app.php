@@ -252,4 +252,8 @@ return [
         env('API_KEY_ANDROID', ''),
     ],
 
+    /**
+     * Font awesome kit id
+     */
+    'font_awesome_kit_id' => env('FONT_AWESOME_KIT_ID', ''),
 ];

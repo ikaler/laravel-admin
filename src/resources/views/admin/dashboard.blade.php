@@ -1,18 +1,17 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
 
-            <h1>Dashboard</h1>
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item active" aria-current="page">{{ __('Dashboard') }}</li>
+  </ol>
+</nav>
 
-            @if (Session::has('success'))
-                <div class="alert alert-success">
-                    {{ Session::get('success') }}</li>
-                </div>
-            @endif
-        </div>
-    </div>
+<div class="row">
+    <div class="col">
+        {{ __('Welcome to dashboard!') }}
+    </div>            
 </div>
+
 @endsection
