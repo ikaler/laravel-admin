@@ -143,4 +143,13 @@ body {
 .right-section {
     position: relative;
     padding: 54px 16px;
+    min-height: calc(100vh - 70px);
+}
+
+.footer {
+    background-color: $bluish-grey-light;
+    font-size: small;
+    text-align: end;
+    padding: 5px 15px;
+    margin-top: 10px;
 }

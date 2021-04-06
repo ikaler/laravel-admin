@@ -118,6 +118,10 @@
             <main class="py-4">
                 @yield('content')
             </main>
+
+        </div>
+        <div class="footer text-muted">
+            Copyright © {{ \Carbon\Carbon::now()->format('Y') }} {{ config('app.name') }}.
         </div>
     </div>
 </body>
