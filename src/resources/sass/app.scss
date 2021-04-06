@@ -1,7 +1,14 @@
-// @import url('https://fonts.googleapis.com/css2?family=Lora:wght@400%3b700&display=swap');
-
 @import 'variables';
 
-@import '~bootstrap/scss/bootstrap';
+:root {
+    --body-font: $font-family-sans-serif;
+    --normal-font-size: $font-size-base;
+    --z-fixed: 1200;
+}
 
-@import 'custom';
+body {
+    position: relative;
+    background-color: $body-bg;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+}

@@ -8,18 +8,17 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>Admin - {{ config('app.name', '') }}</title>
-
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
-
+    
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
-
+    
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-
+    <link href="{{ asset('css/base.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/admin.css') }}" rel="stylesheet">
+    
     <!-- Scripts -->
+    <script src="{{ asset('js/admin.js') }}" defer></script>
     <script src="https://kit.fontawesome.com/{{ config('app.font_awesome_kit_id') }}.js"></script>
 
 </head>
@@ -54,7 +53,7 @@
                 </div>
                 <div>
                     <div class="left-nav-profile">
-                        <img src="{{ asset('images/default_admin.png') }}" class="img-fluid left-nav-profile-img" id="left-nav-profile-img" title="{{ Auth::guard('admin')->user()->name }}">
+                        <img src="{{ asset('images/default_admin.png') }}" class="left-nav-profile-img" id="left-nav-profile-img" title="{{ Auth::guard('admin')->user()->name }}">
                         <span class="left-nav-admin-name d-none" id="left-nav-admin-name">{{ Auth::guard('admin')->user()->name }}</span>
                     </div>
                     <a href="{{ route('admin.logout') }}" onclick="event.preventDefault();
@@ -88,7 +87,7 @@
                         @if (Auth::guard('admin')->check())
                         <li class="nav-item">
                             <a class="nav-link" href="#">
-                                <i class="fas fa-bell"></i>
+                                <i class="fas fa-bell nav-icon"></i><sup><span class="badge badge-pill badge-danger">1</span></sup>
                             </a>
                         </li>
                         <li class="nav-item dropdown">
