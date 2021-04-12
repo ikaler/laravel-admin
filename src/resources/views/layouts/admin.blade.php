@@ -120,9 +120,10 @@
             </main>
 
         </div>
-        <div class="footer text-muted">
+        
+        <footer class="footer mt-auto text-muted">
             Copyright © {{ \Carbon\Carbon::now()->format('Y') }} {{ config('app.name') }}.
-        </div>
+        </footer>
     </div>
 </body>
 </html>

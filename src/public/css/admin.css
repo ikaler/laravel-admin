@@ -143,16 +143,17 @@ body {
 /** toggle changes end **/
 
 .right-section {
-  position: relative;
-  padding: 54px 16px;
-  min-height: calc(100vh - 70px);
+  padding: 60px 15px 30px;
 }
 
 .footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   background-color: #dcdef1;
   font-size: small;
   text-align: end;
   padding: 5px 15px;
-  margin-top: 10px;
 }
 
